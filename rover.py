@@ -33,7 +33,7 @@ Expected Output:
 """
 class rover:
 	def __init__(self):
-		# All the variables are initialised here.
+		"""All the variables are initialised here."""
 		self.x_coordinate = 0 
 		self.y_coordinate = 0
 		self.direction = 'N'
@@ -48,15 +48,17 @@ class rover:
 		self.plateau_size = []
 
 
-	# This function gets the input from user and stores it into proper global variables after parsing.
+	
 	def set_data(self, plateau_size, x_coordinate, y_coordinate, direction, instructions):
+		"""This function gets the input from main and sets all the variables of class."""
 		self.plateau_size = plateau_size 
 		self.x_coordinate, self.y_coordinate, self.direction = x_coordinate, y_coordinate, direction
 		self.instructions = instructions
 
 
-	# This function iterates over each of the instruction and calls the respective command function.
+
 	def follow_instructions(self):
+		"""This function iterates over each of the instruction and calls the respective command function."""
 		for steps in self.instructions:
 			if steps is self.left:
 				self.turn_left()
@@ -67,9 +69,10 @@ class rover:
 			else:
 				print("Wrong Instruction.")
 
-	# Moves the rover based on the present direction the the rover.
+	
 	def move_forward(self):
-		# Assuming that the rover won't move after the plateau edge is reached.
+		"""Moves the rover based on the present direction the the rover.
+		   Assuming that the rover won't move after the plateau edge is reached."""
 		if self.direction is self.north and self.y_coordinate < int(self.plateau_size[1]):
 			self.y_coordinate = self.y_coordinate + 1
 		elif self.direction is self.east and self.x_coordinate < int(self.plateau_size[0]):
@@ -79,8 +82,9 @@ class rover:
 		elif self.direction is self.west and self.x_coordinate > 0:
 			self.x_coordinate = self.x_coordinate - 1 
 
-	# Turns the rover left.
+	
 	def turn_left(self):
+		"""Turns the rover left."""
 		if self.direction is self.north:
 			self.direction = self.west
 		elif self.direction is self.east:
@@ -90,9 +94,9 @@ class rover:
 		elif self.direction is self.west:
 			self.direction = self.south 
 
-	# Turns the rover right.
+	
 	def turn_right(self):
-
+		"""Turns the rover right."""
 		if self.direction is self.north:
 			self.direction = self.east
 		elif self.direction is self.east:
@@ -102,9 +106,9 @@ class rover:
 		elif self.direction is self.west:
 			self.direction = self.north 
 
-	# Prints the final result.
+	
 	def get_result(self):
-		
+		"""Returns the final result."""
 		return self.x_coordinate, self.y_coordinate, self.direction
 
 
