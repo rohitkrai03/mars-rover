@@ -31,99 +31,91 @@ Expected Output:
 5 1 E
 
 """
-
-# All the variables are defined globally here.
-x_coordinate = 0 
-y_coordinate = 0
-direction = 'N'
-left = 'L'
-right = 'R'
-move = 'M'
-north = 'N'
-south = 'S'
-east = 'E'
-west = 'W'
-instructions = ''
-plat_size = []
-
-
-# This function gets the input from user and stores it into proper global variables after parsing.
-def get_input():
-	global x_coordinate
-	global y_coordinate
-	global direction
-	global instructions
-	global plat_size
-
-	plat_size = input().split()
-	x_coordinate, y_coordinate, direction = input().split()
-	x_coordinate, y_coordinate = int(x_coordinate), int(y_coordinate)
-	instructions = input()
+class rover:
+	def __init__(self):
+		# All the variables are defined globally here.
+		self.x_coordinate = 0 
+		self.y_coordinate = 0
+		self.direction = 'N'
+		self.left = 'L'
+		self.right = 'R'
+		self.move = 'M'
+		self.north = 'N'
+		self.south = 'S'
+		self.east = 'E'
+		self.west = 'W'
+		self.instructions = ''
+		self.plat_size = []
 
 
-# This function iterates over each of the instruction and calls the respective command function.
-def follow_instructions():
-	for steps in instructions:
-		if steps is left:
-			turn_left()
-		elif steps is right:
-			turn_right()
-		elif steps is move:
-			move_forward()
-		else:
-			print("Wrong Instruction.")
+	# This function gets the input from user and stores it into proper global variables after parsing.
+	def get_input(self):
+		self.plat_size = input().split()
+		self.x_coordinate, self.y_coordinate, self.direction = input().split()
+		self.x_coordinate, self.y_coordinate = int(self.x_coordinate), int(self.y_coordinate)
+		self.instructions = input()
 
-# Moves the rover based on the present direction the the rover.
-def move_forward():
-	global x_coordinate
-	global y_coordinate
-	global plat_size
-	# Assuming that the rover won't move after the plateau edge is reached.
-	if direction is north and y_coordinate < int(plat_size[1]):
-		y_coordinate = y_coordinate + 1
-	elif direction is east and x_coordinate < int(plat_size[0]):
-		x_coordinate = x_coordinate + 1
-	elif direction is south and y_coordinate > 0:
-		y_coordinate = y_coordinate - 1
-	elif direction is west and x_coordinate > 0:
-		x_coordinate = x_coordinate - 1 
 
-# Turns the rover left.
-def turn_left():
-	global direction
+	# This function iterates over each of the instruction and calls the respective command function.
+	def follow_instructions(self):
+		for steps in self.instructions:
+			if steps is self.left:
+				self.turn_left()
+			elif steps is self.right:
+				self.turn_right()
+			elif steps is self.move:
+				self.move_forward()
+			else:
+				print("Wrong Instruction.")
 
-	if direction is north:
-		direction = west
-	elif direction is east:
-		direction = north
-	elif direction is south:
-		direction = east
-	elif direction is west:
-		direction = south 
+	# Moves the rover based on the present direction the the rover.
+	def move_forward(self):
+		# Assuming that the rover won't move after the plateau edge is reached.
+		if self.direction is self.north and self.y_coordinate < int(self.plat_size[1]):
+			self.y_coordinate = self.y_coordinate + 1
+		elif self.direction is self.east and self.x_coordinate < int(self.plat_size[0]):
+			self.x_coordinate = self.x_coordinate + 1
+		elif self.direction is self.south and self.y_coordinate > 0:
+			self.y_coordinate = self.y_coordinate - 1
+		elif self.direction is self.west and self.x_coordinate > 0:
+			self.x_coordinate = self.x_coordinate - 1 
 
-# Turns the rover right.
-def turn_right():
-	global direction
+	# Turns the rover left.
+	def turn_left(self):
+		if self.direction is self.north:
+			self.direction = self.west
+		elif self.direction is self.east:
+			self.direction = self.north
+		elif self.direction is self.south:
+			self.direction = self.east
+		elif self.direction is self.west:
+			self.direction = self.south 
 
-	if direction is north:
-		direction = east
-	elif direction is east:
-		direction = south
-	elif direction is south:
-		direction = west
-	elif direction is west:
-		direction = north 
+	# Turns the rover right.
+	def turn_right(self):
 
-# Prints the final result.
-def print_output():
-	print(x_coordinate, y_coordinate, direction)
+		if self.direction is self.north:
+			self.direction = self.east
+		elif self.direction is self.east:
+			self.direction = self.south
+		elif self.direction is self.south:
+			self.direction = self.west
+		elif self.direction is self.west:
+			self.direction = self.north 
+
+	# Prints the final result.
+	def print_output(self):
+		print()
+		print(self.x_coordinate, self.y_coordinate, self.direction)
 
 
 
 def main():
-	get_input()
-	follow_instructions()
-	print_output()
+	r = rover()
+
+	r.get_input()
+	r.follow_instructions()
+	r.print_output()
 
 if __name__ == '__main__': 
 	main()
