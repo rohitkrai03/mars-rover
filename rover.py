@@ -33,7 +33,7 @@ Expected Output:
 """
 class rover:
 	def __init__(self):
-		# All the variables are defined globally here.
+		# All the variables are initialised here.
 		self.x_coordinate = 0 
 		self.y_coordinate = 0
 		self.direction = 'N'
@@ -45,15 +45,14 @@ class rover:
 		self.east = 'E'
 		self.west = 'W'
 		self.instructions = ''
-		self.plat_size = []
+		self.plateau_size = []
 
 
 	# This function gets the input from user and stores it into proper global variables after parsing.
-	def get_input(self):
-		self.plat_size = input().split()
-		self.x_coordinate, self.y_coordinate, self.direction = input().split()
-		self.x_coordinate, self.y_coordinate = int(self.x_coordinate), int(self.y_coordinate)
-		self.instructions = input()
+	def set_data(self, plateau_size, x_coordinate, y_coordinate, direction, instructions):
+		self.plateau_size = plateau_size 
+		self.x_coordinate, self.y_coordinate, self.direction = x_coordinate, y_coordinate, direction
+		self.instructions = instructions
 
 
 	# This function iterates over each of the instruction and calls the respective command function.
@@ -71,9 +70,9 @@ class rover:
 	# Moves the rover based on the present direction the the rover.
 	def move_forward(self):
 		# Assuming that the rover won't move after the plateau edge is reached.
-		if self.direction is self.north and self.y_coordinate < int(self.plat_size[1]):
+		if self.direction is self.north and self.y_coordinate < int(self.plateau_size[1]):
 			self.y_coordinate = self.y_coordinate + 1
-		elif self.direction is self.east and self.x_coordinate < int(self.plat_size[0]):
+		elif self.direction is self.east and self.x_coordinate < int(self.plateau_size[0]):
 			self.x_coordinate = self.x_coordinate + 1
 		elif self.direction is self.south and self.y_coordinate > 0:
 			self.y_coordinate = self.y_coordinate - 1
@@ -104,18 +103,20 @@ class rover:
 			self.direction = self.north 
 
 	# Prints the final result.
-	def print_output(self):
-		print()
-		print(self.x_coordinate, self.y_coordinate, self.direction)
+	def get_result(self):
+		
+		return self.x_coordinate, self.y_coordinate, self.direction
 
 
 
 def main():
 	r = rover()
-
-	r.get_input()
+	plateau_size = input().split()
+	x_coordinate, y_coordinate, direction = input().split()
+	instructions = input()
+	r.set_data(plateau_size, int(x_coordinate), int(y_coordinate), direction.upper(), instructions.upper())
 	r.follow_instructions()
-	r.print_output()
+	print(r.get_result())
 
 if __name__ == '__main__': 
 	main()
