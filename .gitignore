@@ -17,9 +17,13 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+
+
 # =========================
 # Operating System Files
 # =========================
+__pycache__/
+
 
 # OSX
 # =========================
