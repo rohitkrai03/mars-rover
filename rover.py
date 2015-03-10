@@ -73,37 +73,37 @@ class rover:
 	def move_forward(self):
 		"""Moves the rover based on the present direction the the rover.
 		   Assuming that the rover won't move after the plateau edge is reached."""
-		if self.direction is self.north and self.y_coordinate < int(self.plateau_size[1]):
+		if self.direction == self.north and self.y_coordinate < int(self.plateau_size[1]):
 			self.y_coordinate = self.y_coordinate + 1
-		elif self.direction is self.east and self.x_coordinate < int(self.plateau_size[0]):
+		elif self.direction == self.east and self.x_coordinate < int(self.plateau_size[0]):
 			self.x_coordinate = self.x_coordinate + 1
-		elif self.direction is self.south and self.y_coordinate > 0:
+		elif self.direction == self.south and self.y_coordinate > 0:
 			self.y_coordinate = self.y_coordinate - 1
-		elif self.direction is self.west and self.x_coordinate > 0:
+		elif self.direction == self.west and self.x_coordinate > 0:
 			self.x_coordinate = self.x_coordinate - 1 
 
 	
 	def turn_left(self):
 		"""Turns the rover left."""
-		if self.direction is self.north:
+		if self.direction == self.north:
 			self.direction = self.west
-		elif self.direction is self.east:
+		elif self.direction == self.east:
 			self.direction = self.north
-		elif self.direction is self.south:
+		elif self.direction == self.south:
 			self.direction = self.east
-		elif self.direction is self.west:
+		elif self.direction == self.west:
 			self.direction = self.south 
 
 	
 	def turn_right(self):
 		"""Turns the rover right."""
-		if self.direction is self.north:
+		if self.direction == self.north:
 			self.direction = self.east
-		elif self.direction is self.east:
+		elif self.direction == self.east:
 			self.direction = self.south
-		elif self.direction is self.south:
+		elif self.direction == self.south:
 			self.direction = self.west
-		elif self.direction is self.west:
+		elif self.direction == self.west:
 			self.direction = self.north 
 
 	
