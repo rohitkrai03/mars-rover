@@ -120,7 +120,8 @@ def main():
 	instructions = input()
 	r.set_data(plateau_size, int(x_coordinate), int(y_coordinate), direction.upper(), instructions.upper())
 	r.follow_instructions()
-	print(r.get_result())
+	result = r.get_result()
+	print(result[0], result[1], result[2])
 
 if __name__ == '__main__': 
 	main()
